@@ -1,10 +1,21 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { Request } from '@adonisjs/core/build/standalone'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+import Lib from 'App/Models/Lib'
 
 export default class LibsController {
+    public async store({request,response} : HttpContextContract){
 
-    public async store(){
-        return{
-            msg : "Ok!",
-        }
+        
+        const body = request.body()
+        const library = await Lib.create(body)
+
+        response.status(201)
+        
+    return {
+        msg : 'Criado com sucesso',
+        data : library
+    }
+
     }
 }

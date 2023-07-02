@@ -26,5 +26,5 @@ Route.group( () => {
     return { hello: 'world', teste : 20}
   })
   
-  Route.post('library', "LibsController.store")
+  Route.resource('/library', "LibsController").apiOnly()
 }).prefix('/api')

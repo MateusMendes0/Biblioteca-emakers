@@ -6,7 +6,7 @@ export default class Lib extends BaseModel {
   public id: number
 
   @column()
-  public library : string
+  public lib : string
 
   @column()
   public book : string
