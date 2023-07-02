@@ -19,7 +19,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import LibsController from 'App/Controllers/Http/LibsController'
 
-Route.get('/', async () => {
-  return { hello: 'world', teste : 20}
-})
+Route.group( () => {
+  Route.get('/', async () => {
+    return { hello: 'world', teste : 20}
+  })
+  
+  Route.post('library', "LibsController.store")
+}).prefix('/api')
