@@ -23,7 +23,7 @@ export default class LibsController {
     public async index(){
 
 
-        const library = await Lib.query().where('lib', 'UFLA')
+        const library = await Lib.all()
         return{
             data : library
         }
