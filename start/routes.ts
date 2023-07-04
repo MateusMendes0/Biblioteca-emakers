@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import LibsController from 'App/Controllers/Http/LibsController'
+import CommandsController from 'App/Controllers/Http/CommandsController'
 
 Route.group( () => {
   Route.get('/', async () => {
@@ -27,4 +28,10 @@ Route.group( () => {
   })
   
   Route.resource('/library', "LibsController").apiOnly()
+
+  Route.put('/library/take/:id', "CommandsController.take")
+  Route.put('/library/return/:id', "CommandsController.return")
+  Route.get('/library/search/:id/avaliable', "CommandsController.avaliable")
+  Route.get('/library/search/:id/all', "CommandsController.all")
+
 }).prefix('/api')
