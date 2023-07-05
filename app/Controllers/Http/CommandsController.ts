@@ -61,7 +61,6 @@ export default class CommandsController {
     public async all( {params, request} : HttpContextContract){
 
         const body = await request.body()
-        console.log(body.person)
         const library = await Lib.query().where('lib', params.id)
         return {
             data : library
