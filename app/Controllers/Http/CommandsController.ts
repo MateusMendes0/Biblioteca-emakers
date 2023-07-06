@@ -46,19 +46,18 @@ export default class CommandsController {
         }
     }
 }
-    public async avaliable( {params} : HttpContextContract){
+
+    public async get_books( {params, request} : HttpContextContract){
+
+        const req_url = await request.only(['avaliable'])
+        if (req_url.avaliable == 'false'){
+            const library = await Lib.query().where('lib', params.library)
+            return {
+                data : library
+            }
+        }
 
         const library = await Lib.query().where('lib', params.library).where('person', null)
-
-        return {
-            data : library
-        }
-    }
-
-
-    public async all( {params} : HttpContextContract){
-
-        const library = await Lib.query().where('lib', params.library)
         return {
             data : library
         }
