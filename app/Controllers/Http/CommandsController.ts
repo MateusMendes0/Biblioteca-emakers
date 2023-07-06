@@ -17,7 +17,7 @@ export default class CommandsController {
 
         library.person = body.person
 
-        library.save()
+        await library.save()
 
         return {
             data : library
@@ -38,7 +38,7 @@ export default class CommandsController {
         if (library.person != null) {
         library.person = null
 
-        library.save()
+        await library.save()
 
         return {
             msg : `Livro ${library.book} foi retornado`,
@@ -46,11 +46,9 @@ export default class CommandsController {
         }
     }
 }
-    public async avaliable( {params, request} : HttpContextContract){
+    public async avaliable( {params} : HttpContextContract){
 
-        const body = await request.body()
-        console.log(body.person)
-        const library = await Lib.query().where('lib', params.id).where('person', null)
+        const library = await Lib.query().where('lib', params.library).where('person', null)
 
         return {
             data : library
@@ -58,11 +56,9 @@ export default class CommandsController {
     }
 
 
-    public async all( {params, request} : HttpContextContract){
+    public async all( {params} : HttpContextContract){
 
-        const body = await request.body()
-        console.log(body.person)
-        const library = await Lib.query().where('lib', params.id)
+        const library = await Lib.query().where('lib', params.library)
         return {
             data : library
         }
