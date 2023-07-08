@@ -31,7 +31,6 @@ Route.group( () => {
 
   Route.put('/library/take/:id', "CommandsController.take")
   Route.put('/library/return/:id', "CommandsController.return")
-  Route.get('/library/search/:id/avaliable', "CommandsController.avaliable")
-  Route.get('/library/search/:id/all', "CommandsController.all")
+  Route.get('/library/search/:library?avaliable', "CommandsController.get_books")
 
 }).prefix('/api')

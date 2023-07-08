@@ -1,14 +1,15 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { Request } from '@adonisjs/core/build/standalone'
+import { Request, Response } from '@adonisjs/core/build/standalone'
 
 import Lib from 'App/Models/Lib'
+import Book from 'App/Models/Book'
 import bodyParserConfig from 'Config/bodyparser'
 
 export default class CommandsController {
 
     public async take( {params, request} : HttpContextContract){
 
-        const library = await Lib.findOrFail(params.id)
+        const library = await Book.findByOrFail("id", params.id)
 
 
         if (library.person == null){
@@ -17,7 +18,7 @@ export default class CommandsController {
 
         library.person = body.person
 
-        library.save()
+        await library.save()
 
         return {
             data : library
@@ -25,20 +26,20 @@ export default class CommandsController {
     }   
     else {
         return{
+            
             msg : "Este livro não está disponível"
         }
     }
     }
     public async return( {params, request} : HttpContextContract){
 
-        const library = await Lib.findOrFail(params.id)
-        const body = request.body()
+        const library = await Book.findOrFail(params.id)
 
 
         if (library.person != null) {
         library.person = null
 
-        library.save()
+        await library.save()
 
         return {
             msg : `Livro ${library.book} foi retornado`,
@@ -46,25 +47,21 @@ export default class CommandsController {
         }
     }
 }
-    public async avaliable( {params, request} : HttpContextContract){
 
-        const body = await request.body()
-        console.log(body.person)
-        const library = await Lib.query().where('lib', params.id).where('person', null)
+public async get_books( {params, request} : HttpContextContract){
 
+    const req_url = await request.only(['avaliable'])
+    if (req_url.avaliable == 'false'){
+        const library = await Book.query().where('library', params.library)
         return {
             data : library
         }
     }
 
-
-    public async all( {params, request} : HttpContextContract){
-
-        const body = await request.body()
-        const library = await Lib.query().where('lib', params.id)
-        return {
-            data : library
-        }
+    const library = await Book.query().where('library', params.library).where('person', null)
+    return {
+        data : library
     }
+}
 
 }
