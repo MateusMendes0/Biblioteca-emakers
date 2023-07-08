@@ -2,6 +2,9 @@ import { Request } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Lib from 'App/Models/Lib'
+import Book from 'App/Models/Book'
+import Person from 'App/Models/Person'
+
 import bodyParserConfig from 'Config/bodyparser'
 
 export default class LibsController {
@@ -9,7 +12,9 @@ export default class LibsController {
 
         
         const body = request.body()
-        const library = await Lib.create(body)
+        const library = await Lib.create({library:body.library})
+        await library.save()
+
 
         response.status(201)
         
@@ -20,10 +25,42 @@ export default class LibsController {
 
     }
 
+    public async store_book({request,response} : HttpContextContract){
+
+        const body = request.body()
+
+        const books = await Book.create({library:body.library, book:body.book, person:body.person})
+        await books.save()
+
+        response.status(201)
+        
+    return {
+        msg : 'Criado com sucesso',
+        data : books
+    }
+
+    }
+
+    public async add_user({request,response} : HttpContextContract){
+
+        const body = request.body()
+
+        const user = await Person.create({person:body.person})
+        await user.save()
+
+        response.status(201)
+        
+    return {
+        msg : 'Criado com sucesso',
+        data : user
+    }
+
+    }
+
     public async index(){
 
 
-        const library = await Lib.all()
+        const library = await Book.all()
         return{
             data : library
         }
@@ -42,11 +79,10 @@ export default class LibsController {
 
         const library = await Lib.findOrFail(params.id)
 
-        library.delete()
+        await library.delete()
 
         return {
-            msg : `Livro ${library.book} excluído`,
-            data : library
+            msg : `Biblioteca ${library.library} excluída`,
         }
         
     }

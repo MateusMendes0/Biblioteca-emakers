@@ -1,11 +1,11 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Libraries extends BaseSchema {
-  protected tableName = 'libs'
+export default class Persons extends BaseSchema {
+  protected tableName = 'people'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.string('library').primary()
+      table.string('person').primary()
       table.increments('id')
 
       /**

@@ -28,6 +28,9 @@ Route.group( () => {
   })
   
   Route.resource('/library', "LibsController").apiOnly()
+  Route.post('/library/add_book', "LibsController.store_book")
+  Route.post('/library/add_user', "LibsController.add_user")
+
 
   Route.put('/library/take/:id', "CommandsController.take")
   Route.put('/library/return/:id', "CommandsController.return")
