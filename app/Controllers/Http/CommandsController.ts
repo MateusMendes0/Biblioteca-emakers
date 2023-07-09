@@ -31,9 +31,9 @@ export default class CommandsController {
         }
     }
     }
-    public async return( {params, request} : HttpContextContract){
+    public async return_book( {params} : HttpContextContract){
 
-        const library = await Book.findOrFail(params.id)
+        const library = await Book.findByOrFail('id', params.id)
 
 
         if (library.person != null) {

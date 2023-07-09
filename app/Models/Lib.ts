@@ -4,10 +4,10 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 export default class Lib extends BaseModel {
   
   @column({ isPrimary: true })
-  public library : string
-
-  @column({ isPrimary: false })
   public id : number
+  
+  @column()
+  public library : string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

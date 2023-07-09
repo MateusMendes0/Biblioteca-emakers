@@ -5,8 +5,8 @@ export default class Libraries extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.string('library').primary()
       table.increments('id')
+      table.string('library').unique()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
