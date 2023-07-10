@@ -7,6 +7,9 @@ export default class Person extends BaseModel {
 
   @column()
   public person : string
+
+  @column()
+  public book_id : number | null
   
 
 

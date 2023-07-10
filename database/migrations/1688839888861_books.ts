@@ -5,11 +5,11 @@ export default class Books extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.increments('id').primary()
       table.string('book')
 
       table.string('library').unsigned().references("libs.library").onDelete('CASCADE')
-      table.string('person').unsigned().references("people.person")
+      table.string('person').unsigned().references("people.person").nullable()
 
   
       table.timestamp('created_at', { useTz: true })

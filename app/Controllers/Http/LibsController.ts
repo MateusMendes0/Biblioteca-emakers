@@ -28,6 +28,8 @@ export default class LibsController {
     public async store_book({request,response} : HttpContextContract){
 
         const body = request.body()
+        const library = await Lib.firstOrCreate({"library" : body.library})
+        await library.save()
 
         const books = await Book.create({library:body.library, book:body.book, person:body.person})
         await books.save()
