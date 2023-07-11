@@ -1,0 +1,9 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.tabela {
+    border:1px solid black;
+    width: 30%;
+}

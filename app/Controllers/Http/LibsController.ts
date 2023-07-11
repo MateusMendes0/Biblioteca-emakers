@@ -25,24 +25,6 @@ export default class LibsController {
 
     }
 
-    public async store_book({request,response} : HttpContextContract){
-
-        const body = request.body()
-        const library = await Lib.firstOrCreate({"library" : body.library})
-        await library.save()
-
-        const books = await Book.create({library:body.library, book:body.book, person:body.person})
-        await books.save()
-
-        response.status(201)
-        
-    return {
-        msg : 'Criado com sucesso',
-        data : books
-    }
-
-    }
-
     public async add_user({request,response} : HttpContextContract){
 
         const body = request.body()
@@ -62,7 +44,7 @@ export default class LibsController {
     public async index(){
 
 
-        const library = await Book.all()
+        const library = await Lib.all()
         return{
             data : library
         }
@@ -70,7 +52,7 @@ export default class LibsController {
 
     public async show({ params } : HttpContextContract){
 
-        const library = await Lib.findOrFail(params.id)
+        const library = await Lib.findByOrFail('id', params.id)
 
         return {
             data : library
@@ -89,29 +71,20 @@ export default class LibsController {
         
     }
 
-/*   public async update( {params, request} : HttpContextContract) {
+   public async update( {params, request} : HttpContextContract) {
 
         const body = request.body()
 
         const library = await Lib.findOrFail(params.id)
-
-        if (body.book != null){
-        library.book = body.book
-        }
-        if (body.lib != null){
-        library.lib = body.lib
-        }
         
-        library.person = body.person
+        library.library = body.library
 
         await library.save()
 
         return {
             data : library
-        }
-
+        } 
         
-        
-    } */
+    }
 
 }

@@ -23,12 +23,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     super(Logger)
   }
 
-  public async handle(error: any, ctx: HttpContextContract) {
+  // public async handle(error: any, ctx: HttpContextContract) {
 
-    if (error.code === 'SQLITE_CONSTRAINT' || error.code === 'E_ROW_NOT_FOUND') {
-      return ctx.response.status(422).send({ 'error' : "USUARIO NAO EXISTE NO BANCO DE DADOS"})
-    }
+  //   if (error.code === 'SQLITE_CONSTRAINT' || error.code === 'E_ROW_NOT_FOUND') {
+  //     return ctx.response.status(422).send({ 'error' : "USUARIO NAO EXISTE NO BANCO DE DADOS"})
+  //   }
 
-    return super.handle(error, ctx)
-  }
+  //   return super.handle(error, ctx)
+  // }
 }

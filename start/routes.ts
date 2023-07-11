@@ -21,6 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 import LibsController from 'App/Controllers/Http/LibsController'
 import CommandsController from 'App/Controllers/Http/CommandsController'
+import BooksController from 'App/Controllers/Http/BooksController'
 
 Route.group( () => {
   Route.get('/', async () => {
@@ -28,7 +29,8 @@ Route.group( () => {
   })
   
   Route.resource('/library', "LibsController").apiOnly()
-  Route.post('/library/add_book', "LibsController.store_book")
+  Route.resource('/library/book', "BooksController").apiOnly()
+
   Route.post('/library/add_user', "LibsController.add_user")
 
 
