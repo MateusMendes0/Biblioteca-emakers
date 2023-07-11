@@ -12,7 +12,6 @@ export default class CommandsController {
 
         const library = await Book.findByOrFail("id", params.id)
 
-
         if (library.person){
             return{
                 msg : "Este livro não está disponível"
@@ -30,7 +29,6 @@ export default class CommandsController {
             data : library
             }
 
-    
     }
     public async return_book( {params} : HttpContextContract){
 

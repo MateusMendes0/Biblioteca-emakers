@@ -38,7 +38,7 @@ export default class BooksController {
 
     public async show({ params } : HttpContextContract) {
 
-        const book = await Book.findByOrFail('id', params.id)
+        const book = await Book.findByOrFail("id", params.id)
 
         return {
             data : book
