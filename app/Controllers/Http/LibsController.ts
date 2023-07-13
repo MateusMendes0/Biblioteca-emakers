@@ -61,7 +61,7 @@ export default class LibsController {
 
     public async destroy({ params } : HttpContextContract) {
 
-        const library = await Lib.findByOrFail('library', params.id)
+        const library = await Lib.findByOrFail('id', params.id)
 
         await library.delete()
 

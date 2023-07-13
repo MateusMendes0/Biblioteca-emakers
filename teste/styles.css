@@ -1,9 +1,75 @@
 *{
     box-sizing: border-box;
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    border-color : white;
 }
 
-.tabela {
-    border:1px solid black;
-    width: 30%;
+body{
+    background-color:black;
+    color:white;
+}
+
+table{
+    width: 50%;
+
+}
+
+th,td {
+    border: 1px solid white;
+    margin: 100px;
+    padding: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center ;
+    column-gap: 20px;
+    margin-top: 40px;
+}
+
+.add_book{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    column-gap: 20px;
+
+}
+
+
+#table {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+button {
+    border-radius: 5px;
+    background-color: white;
+    padding: 10px;
+}
+
+input {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button:hover{
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: 0 10px #666;
+    transform: translateY(-3px);
+    transition: 0.5s;
+}
+
+input:focus{
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+tr:hover{
+    transition: 0.5s;
+    background-color: white;
+    color:black
 }

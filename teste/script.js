@@ -1,7 +1,11 @@
 var botao = document.getElementById("change")
-var html = document.getElementById("testes")
+var html = document.getElementById("table")
 let input = document.getElementById("input")
 var all = document.getElementById("all_check")
+let book = document.getElementById("input_book")
+let library = document.getElementById("input_library")
+let add = document.getElementById("add")
+let user = document.getElementById("usuario")
 
 
 
@@ -39,7 +43,6 @@ search_button.addEventListener("click", async function(){
       <th>ID</th>
       <th>Disponível</th>>
     </tr>`
-
     dados_json.forEach(dados => {
         if(dados.person == null){
             var avaliable = 'Sim'
@@ -47,8 +50,45 @@ search_button.addEventListener("click", async function(){
         else{
             var avaliable = 'Não'
         }
-        string += `<tr><td>${dados.library}</td><td>${dados.book}</td><td>${dados.id}</td><td>${avaliable}</td></tr>`
+        string += `<tr><td>${dados.library}</td><td>${dados.book}</td><td>${dados.id}</td><td>${avaliable}</td><td><button onclick="take(${dados.id})">Take</button></td></td></tr>`
     });
     string += `</table>`
     html.innerHTML = string
 })
+
+add.addEventListener("click", async function(){
+    const livro = {
+        library : library.value,
+        book: book.value,
+        };
+        
+    const options = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(livro),
+        };
+
+
+    const url = "http://localhost:3333/api/book"
+    var data = await fetch(url, options)
+})
+
+async function take(num){
+    const person = {
+        person : user.value
+        };
+        
+    const options = {
+        method: 'PUT',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(person),
+        };
+
+
+    const url = `http://localhost:3333/api/library/take/${num}`
+    var data = await fetch(url, options)
+}

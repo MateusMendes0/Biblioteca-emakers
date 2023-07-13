@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -17,7 +17,18 @@
         <input type="checkbox" id="all_check" name='all_check'>
         <label for="all_check">All</label>
       </div>
-    <div id="testes"></div>
+
+    <div class="add_book">
+        <label for="input_library">Biblioteca</label>
+        <input type="input_library" name="input_library" id="input_library" placeholder="Nome da Biblioteca">
+        <label for="input_book">Livro</label>
+        <input id="input_book" placeholder="Nome do Livro">
+        <button id="add">Adicionar</button>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <input id="usuario" placeholder="Nome de Usuario">
+    </div>
+    <div id="table"></div>
     
 </body>
 <script src="script.js"></script>
