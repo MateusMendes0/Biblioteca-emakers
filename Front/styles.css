@@ -40,8 +40,9 @@ th,td {
 
 #table {
     display: flex;
-    justify-content: center;
     padding: 40px;
+    flex-direction: column;
+    align-items: center;
 }
 
 button {

@@ -26,7 +26,7 @@ export default class PeopleController {
     
         public async index(){
             
-            const person = await Person.all()
+            const person = await Person.query().preload("book_id")
             return{
                 data : person
             }
@@ -35,6 +35,8 @@ export default class PeopleController {
         public async show({ params } : HttpContextContract) {
     
             const person = await Person.findByOrFail("id", params.id)
+
+            await person.load("book_id")
     
             return {
                 data : person

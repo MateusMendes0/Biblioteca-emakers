@@ -13,19 +13,16 @@ export default class BooksController {
     public async store({request,response} : HttpContextContract){
 
         const body = request.body()
-        const library = await Lib.firstOrCreate({"library" : body.library})
-        await library.save()
 
-        const books = await Book.create({library:body.library, book:body.book, person:body.person})
+        const books = await Book.create({library_id:body.library_id, book:body.book})
         await books.save()
 
-        response.status(201)
+        response.created(books)
         
     return {
-        msg : 'Criado com sucesso',
+        message : 'Criado com sucesso',
         data : books
     }
-
     }
 
     public async index(){
@@ -44,6 +41,18 @@ export default class BooksController {
             data : book
         }
         
+    }
+
+    public async update({params, request} : HttpContextContract){
+
+        const book = await Book.findByOrFail("id", params.id)
+        const body = await request.body()
+        book.book = body.book
+        book.library_id = body.library
+
+        return {
+            data : book
+        }
     }
     
     public async destroy({ params } : HttpContextContract) {

@@ -8,8 +8,8 @@ export default class Books extends BaseSchema {
       table.increments('id').primary()
       table.string('book')
 
-      table.string('library').unsigned().references("libs.library").onDelete('CASCADE')
-      table.string('person').unsigned().references("people.person").nullable()
+      table.string('library_id').unsigned().references("libs.id").onDelete('CASCADE')
+      table.integer('person_id').unsigned().references("id").inTable("people")
 
   
       table.timestamp('created_at', { useTz: true })

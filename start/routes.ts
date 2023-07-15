@@ -26,7 +26,7 @@ import PeopleController from 'App/Controllers/Http/PeopleController'
 
 Route.group( () => {
   Route.get('/', async () => {
-    return { hello: 'world', teste : 20}
+    return { message: 'Acesse /api'}
   })
   
   Route.resource('/library', "LibsController").apiOnly()
@@ -34,7 +34,7 @@ Route.group( () => {
   Route.resource('/user', "PeopleController").apiOnly()
 
   Route.get('/library/search/:library?avaliable', "CommandsController.get_books")
-  Route.put('/library/take/:id', "CommandsController.take")
+  Route.put('/library/take/:id/', "CommandsController.take")
   Route.put('/library/return/:id', "CommandsController.return_book")
   Route.put('/library/transfer/:id', "CommandsController.transfer")
 

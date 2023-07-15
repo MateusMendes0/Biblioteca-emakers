@@ -10,10 +10,10 @@ export default class Book extends BaseModel {
 
 
   @column()
-  public library : string
+  public library_id : number
 
   @column()
-  public person : string | null
+  public personId : number | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

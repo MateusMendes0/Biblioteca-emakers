@@ -7,7 +7,6 @@ export default class Persons extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('person').unique()
-      table.integer('book_id').unsigned().references('books.id')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

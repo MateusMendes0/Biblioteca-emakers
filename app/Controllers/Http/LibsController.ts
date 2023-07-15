@@ -2,10 +2,7 @@ import { Request } from '@adonisjs/core/build/standalone'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Lib from 'App/Models/Lib'
-import Book from 'App/Models/Book'
 import Person from 'App/Models/Person'
-
-import bodyParserConfig from 'Config/bodyparser'
 
 export default class LibsController {
     public async store({request,response} : HttpContextContract){
@@ -21,22 +18,6 @@ export default class LibsController {
     return {
         msg : 'Criado com sucesso',
         data : library
-    }
-
-    }
-
-    public async add_user({request,response} : HttpContextContract){
-
-        const body = request.body()
-
-        const user = await Person.create({person:body.person})
-        await user.save()
-
-        response.status(201)
-        
-    return {
-        msg : 'Criado com sucesso',
-        data : user
     }
 
     }
